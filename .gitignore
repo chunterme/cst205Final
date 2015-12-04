@@ -1,0 +1,31 @@
+# Files for users
+plugins/
+
+# Compiled Java files
+*.class
+jes/classes.jar
+jes/javadoc/
+dependencies/jars/jmusic-instruments.jar
+
+# Generated Java files
+jes/java/JESVersion.java
+
+# Built releases
+build.properties
+releases/*.*
+releases/stage
+!releases/build-releases.xml
+
+# Files created during testing
+tests/test-output/*
+!tests/test-output/README
+
+# Jython cache
+dependencies/jython/cachedir/
+
+# JES-generated backup and log files
+jmusic.tmp
+*.pybak
+*.pylog
+
+.firsttimebuilding
