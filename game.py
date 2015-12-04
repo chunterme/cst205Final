@@ -1,1 +1,2 @@
-#TODO write code
+def silly():
+	print "silly"
