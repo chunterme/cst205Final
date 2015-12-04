@@ -1,2 +1,1 @@
-def silly():
-	print "silly"
+#TODO write code
