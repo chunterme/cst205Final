@@ -1,6 +1,9 @@
+		
+#Main      
 import random
 import sys
 
+doorOpened = false  #Global variable for gmae. Not sure if you guy want to change this logic. Ok with whatever u decide!:)
 
 def welcome():
   
@@ -107,10 +110,62 @@ def room2(player):
   direction = requestString("Which direction would you like to go: ")
     
   goDirection(player, 'room2', validChoices, direction)
-    
-    
+
+
+
+def room3(player):
+  #function for room 3
+  validChoices = ['west', 'south', 'north']   #west moves player back to main hall, south brings playyer to puzzle game, which open passageway.  
+  
+  #If Door to passageway is closed...
+  if doorOpened == false:
+    printNow ("\n************************************************************************************")
+    printNow ("You have entered into a large dome shaped catacomb. It is cold, hummid, and dusty.")
+    printNow ("There does not seem to be anything in room other then large cloumbs of skulls stacked")
+    printNow ("on both the right and left of you. In front of you, there seems to be somthing carved")
+    printNow ("into the stone.")
+    goDirection(player, room3, validChoices, direction)
+  #If game is completed and door is open...
+  elif doorOpened == true:
+    printNow ("You are back into the large dome shaped catacomb. It is cold, hummid, and dusty.")
+    printNow ("There does not seem to be anything in room other then large cloumbs of skulls stacked")
+    printNow ("on both the right and left of you. In front of you, the skull door appears to be open")
+    goDirection(player, room3, validChoices, direction)
+  else:
+    printNow("Door error: see line 121-135")
+
+       
+  
+def room4(player):
+  #function for room 4
+  validChoices = ['west', 'north']   #west moves player back to main hall, north brings player to tunnel 2.
+  printNow ("\n************************************************************************************")
+  printNow ("You have entered into a small stuffy catacomb. It is dark and cold.")
+  printNow ("it is small and crampped. The celing is low and there is not much ")
+  printNow ("room to move around. To the west side of the room, there is nothing")
+  printNow ("but a bunch of old stacked bones.... There is also an old stone carving")
+  printNow ("which says 'TU VAS MOURIR'.") #This means you will die in french. Is this a french catacomb? lol. I didnt know...
+  goDirection(player, room4, validChoices, direction)
+  
+  
+  
+def passageWay1(player):
+  #function for passage way 1. 
+  validChoices = ['south', 'north']  #South: room 2; Norht: Back to room 3
+  printNow ("\n************************************************************************************")
+  printNow ("You have descovered a small opening in the wall. It seems to lead to some sort of")
+  printNow ("passage way. You begin to crawl inside. Bones snap and crack underneath your")
+  printNow ("hands and knees. The shards of broken bone push threw the surface of your skin.")
+  printNow ("You feel a hudge wave of anxiety, filling you stomach with an epmpty pit.")
+  printNow ("Your heart begins to race. You have reached half way in the tunnel and now you")
+  printNow ("begin to wounder.... 'Should I turn back?'")
+  goDirection(player, room4, validChoices, direction)
+           
+                  
 """function goDirection keeps track of the player allowed directions and checks their validity 
 it also keeps track of doors and contains the win and lose conditions"""
+
+
 def goDirection(player, roomName, validChoices, playerChoice):
 
   choices = ['help', 'exit']
@@ -134,8 +189,43 @@ def goDirection(player, roomName, validChoices, playerChoice):
   elif roomName == 'room2':
     if playerChoice.lower() == "north":
       room1(player)
+    
       
       
+  # room3 choices here
+  elif roomName == 'room3':
+    if doorOpened == false: 
+      if playerChoice.lower() == "south":
+        doorGame()
+      if playerChoice.lower() == "north":
+        tunnel2(player)
+      if playerChoice.lower() == "west":
+        tunnel1(player)
+    else:
+      if playerChoice.lower() == "south":
+        passageWay1(player)
+      if playerChoice.lower() == "north":
+        tunnel2(player)
+      if playerChoice.lower() == "west":
+        tunnel1(player)
+       
+  # room4 choices here
+  elif roomName == 'room4':
+    if playerChoice.lower() == "north":
+      tunnel2(player)  
+    if playerChoice.lower() == "east":
+      tunnel1(player)  
+   
+ #Passage way 1 choices here
+  elif roomName == 'passage way one' :
+    if playerChoice.lower() == "north":
+      printNow ("\nYou have decided to turn back\n")
+      room3(player)
+    if playerChoice.lower() == "south":
+      printNow("\nYou decided to move forward and now you have reached the end of the tunnel.\n")
+      room2(player)
+      
+                               
 def fightControl(player, strength, monster, penalty):
   while not fight(strength):
     printNow("You strick the "+monster+", but the "+monster+" strikes back")
@@ -237,7 +327,72 @@ class Player:
   def inHistory(self, note):
     return (note in self.trackHistory)
       
+       
+         
+def doorGame():
+#mini Game to open passageway function
+                     
+  hiddenWord = "matchstick"                                      #Secret Word: Can be changed to anything you like and will still work!
+  wordDashes = "?" * len(hiddenWord)                             #Display dashes for secret word                                       
+  guessedLetters = ""                                            #holds on to the guessed letters 
+  correctLetters = 0                                             #correct letters incrimentor 
+  quitGame = false 
+  possibleLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
   
+  #Game Logic
+  printNow("\n Tear one off and scratch my head what was red is black instead!")
+  printNow(wordDashes) 
+  quiteGame  = false                                        #Displays the proper - of hiddenWord
+  while quitGame == false :
+     guessedLetter = requestString("Please enter only ONE letter. \n Our type quit to end." )  
+     guessedLetter = guessedLetter.lower()   
+     
+     #error Checking for user input...
+     if guessedLetter == "quit":
+       quitGame = true
+     if len(guessedLetter) != 1:
+       printNow("You should attempt a single letter....")
+     elif guessedLetter in guessedLetters:
+       printNow("No, that's not right. You have already guessed that letter. Choose again.")
+     elif guessedLetter not in possibleLetters:
+       printNow("You begin to loose concentration. That's not a letter")
+     else:
+       printNow("You guessed: " + guessedLetter)
+       guessedLetters = guessedLetter + guessedLetters
+       
+    #Begin this only if no errors
+      
+       #if guessed letter is correct
+       if guessedLetter in hiddenWord:
+         guessedLetters = guessedLetters + guessedLetter
+         printNow("\nYou feel like you are getting close to the answer! Yes, that seems to be correct\n")
+         #Begin to display word Dashes...
+         for i in range(len(hiddenWord)):
+           if guessedLetter in hiddenWord[i]: 
+             wordDashes = wordDashes[:i] + hiddenWord[i] + wordDashes[i+1:] #travels through the array and splices string to correct letter in index i..
+             correctLetters = correctLetters + 1                                                          #then moves to the next even index using times x2. This keeps the blank spaces... 
+         printNow(wordDashes)
+       
+       #if the guessed letter is not correct...
+       else:
+           wrongAnswers = wrongAnswers + 1
+           printNow("That does not appear to be correct, you think to yourself!")
+           printNow("Try a diffrent letter: ")  
+           printNow(wordDashes) 
+
+         # Check if player has guessed too many times and lost
+                      
+       
+     if correctLetters== len(hiddenWord):
+       printNow("The correct answer was:  " + hiddenWord)
+       printNow("You place a burning match in the skulls mouth, and")
+       printNow("The catacomb wall begins to shake...")
+       printNow("You have opened a door....")
+       doorOpened = true
+       return doorOpened
+     # Ask the player if they want to play again (but only if the game is done).
+     
 
 welcome()
 room1()
+  
