@@ -406,6 +406,7 @@ class Item:
   def getStrength(self):
     return self.strength
 
+
 """Class Player represents players in the game"""
 class Player:
   
@@ -413,7 +414,17 @@ class Player:
     self.trackHistory = []
     self.knapsack = [];
     self.health = 100
+    self.name = ''
   
+
+  """Method setName player's name"""
+  def setName(name=None):
+    self.name = name
+
+  """Method getName return player's name"""
+  def getName():
+      return self.name
+
   """Method pickUp adds item to player knapsack"""
   def pickUp(self, item):
     self.knapsack.append(item)
