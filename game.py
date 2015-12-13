@@ -194,6 +194,21 @@ def goDirection(player, roomName, validChoices, playerChoice):
     sys.exit("Goodbye. Thank you for playing.")
       
   # room1 choices here 
+   elif roomName == 'entry':
+    if doorOpened == false: 
+      if playerChoice.lower() == "north":
+        showInformation("Hey Bud I'm looking for a Halloween Party, Do you know where 317 Spooner St is? But hey why you can't go this way!"
+        entry(player=None)
+      if playerChoice.lower() == "south":
+        showInformation("Thats a Dead end behind you, you can't go that way!")
+        entry(player=None)
+      if playerChoice.lower() == "east":
+         showInformation("Thats a fire ladder, you can't go that way!"
+         entry(player=None)
+    else:
+      if playerChoice.lower() == "west":
+        tunnel1(player)
+  
   if roomName == 'room1':
     if playerChoice.lower() == "south":
       room2(player)
