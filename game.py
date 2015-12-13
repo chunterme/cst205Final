@@ -550,8 +550,11 @@ def doorGame():
        self.trackHistory.append(doorOpen)
        
 #***************************Sound***Logic*************************************************     
+
+
+
 def creakingDoor():
-   file = "" 
+   file = "cst205Final/sounds/Creaking Door.wav" 
    sound = makeSound(file)
    for sample in getSamples(sound):
       value  = getSampleValue(sample)
