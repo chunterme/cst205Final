@@ -57,7 +57,21 @@ def tunnel1_2(player):
   goDirection(player, tunnel1_2, validChoices, direction)
   else:
     printNow("Choose your direction" 
-    
+def tunnel1_3(player):
+  #function for tunnel1_3
+  printNow("You further along in the dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
+  printNow("you have a door on your left, and a dark tunnel ahead, which way would you like to go?")
+  validChoices = ['north','west', 'south']   # player is in the main corridor  they can go north, east, or south
+  #If door isnt opened
+  if doorOpened == false:
+    printNow(" Choose your direction") 
+      goDirection(player, room3, validChoices, direction)
+  #If user Chooses to go into the first room or further navigate tunnel
+  elif doorOpened == true:
+  goDirection(player, tunnel1_3, validChoices, direction)
+  else:
+    printNow("Choose your direction" )    
+
 def room1(player=None):
 
   #first room in the game needs this
@@ -270,6 +284,21 @@ def goDirection(player, roomName, validChoices, playerChoice):
          tunne11_3(player)
         else:
          printNow("you can only go north") 
+   # tunnel1_3 choices
+  elif roomName == 'tunnel1_3':
+    if doorOpened == false: 
+      if playerChoice.lower() == "south":
+        tunnel1_2(player)
+      elif playerChoice.lower() == "east":
+        printNow("You Can't go that way")  
+      else:
+      
+      if playerChoice.lower() == "west":
+        room4(player)
+      if playerChoice.lower() == "north":
+         tunne11_4(player)
+        else:
+         printNow("choose a direction") 
 #Room 1 Choices here  
   if roomName == 'room1':
     if playerChoice.lower() == "south":
