@@ -418,11 +418,11 @@ class Player:
   
 
   """Method setName player's name"""
-  def setName(name=None):
+  def setName(self, name=None):
     self.name = name
 
   """Method getName return player's name"""
-  def getName():
+  def getName(self):
       return self.name
 
   """Method pickUp adds item to player knapsack"""
