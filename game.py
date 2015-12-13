@@ -15,6 +15,19 @@ def welcome():
   return
   
 """ Rooms """
+def entry(player=None):
+
+  #first room in the game needs this
+  if player is None:
+    player = Player()
+    
+  # setup your valid directional choices for this room
+  validChoices = ['north', 'east', 'west','south']
+  showInformation("You have entered a courtyard in a from  the back of an alley, there's a door on your left,a Fire ladder on right a Dead end behind you, and a creepy clown with a rusty meat cleaver covered in blood in front of you, which way do you want to go?")
+  if doorOpened == false
+    goDirection(player, room3, validChoices, direction)
+  elif doorOpened == true:
+    goDirection(player, 'entry', validChoices, direction)
 
 def room1(player=None):
 
