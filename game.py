@@ -482,37 +482,50 @@ def doorGame():
   hiddenWord = "matchstick"                                      #Secret Word: Can be changed to anything you like and will still work!
   wordDashes = "?" * len(hiddenWord)                             #Display dashes for secret word                                       
   guessedLetters = ""                                            #holds on to the guessed letters 
-  correctLetters = 0                                             #correct letters incrimentor 
+  correctLetters = 0                                             #correct letters incriminator 
+  wrongAnswers = 0                                               #Holds wrong letter incriminator
   quitGame = false 
   possibleLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
   
   #Game Logic
-  printNow("\n Tear one off and scratch my head what was red is black instead!")
+  printNow("\n You approach the wall, when suddenly a rolling grey fog begins to form in front of the door.")
+  printNow("The fog starts to cluster and take the form of a old, weathered woman. Through the fog, her face takes")
+  printNow("form. Her eyes are black, void of any light. Suddenly she speaks. Her voice is soft and chilling... 'Foolish mortal, it appears you have")
+  printNow("fallen into my trap....' You begin to feel your own heart begin to beat out of your chest. 'You look")
+  printNow("frightened.... good! But there is hope for you see... just answer my question and you can go free...")
+  printNow("'And because I am so generous I will even help you! You can guess letters to the answer and I will tell")
+  printNow("you if your getting close.....")
+  printNow("However, if you guess more than five letter incorrectly..... well.... ha ha ha....'")
+  printNow("\n 'Ready? Tear one off and scratch my head what was red is black instead! WHAT AM I!'")
   printNow(wordDashes) 
   quiteGame  = false                                        #Displays the proper - of hiddenWord
+
   while quitGame == false :
-     guessedLetter = requestString("Please enter only ONE letter. \n Our type quit to end." )  
+     guessedLetter = requestString("What letter do you think is in the answer?." )  
      guessedLetter = guessedLetter.lower()   
      
-     #error Checking for user input...
+     #error Checking for user input, exit feature, end game logic...
      if guessedLetter == "quit":
        quitGame = true
      if len(guessedLetter) != 1:
-       printNow("You should attempt a single letter....")
+       printNow("Stupid mortal, ha! That to many letters....")
+       printNow("I won't count this one against you!")
      elif guessedLetter in guessedLetters:
-       printNow("No, that's not right. You have already guessed that letter. Choose again.")
+       printNow("Stupid mortal, ha! You have already guessed that letter....")
+       printNow("I won't count this one against you!")
      elif guessedLetter not in possibleLetters:
-       printNow("You begin to loose concentration. That's not a letter")
+       printNow("You begin to lose your concentration. That's not a letter")
+     elif wrongAnswers >= 5:
+       sys.exit("The spirit laughs...Suddenly the floor opens and drops you to your death... YOU LOOSE!")
      else:
        printNow("You guessed: " + guessedLetter)
        guessedLetters = guessedLetter + guessedLetters
-       
-    #Begin this only if no errors
+
       
        #if guessed letter is correct
        if guessedLetter in hiddenWord:
          guessedLetters = guessedLetters + guessedLetter
-         printNow("\nYou feel like you are getting close to the answer! Yes, that seems to be correct\n")
+         printNow("\nYou are getting close mortal! '" + guessedLetter + "' is in the answer\n")
          #Begin to display word Dashes...
          for i in range(len(hiddenWord)):
            if guessedLetter in hiddenWord[i]: 
@@ -520,24 +533,21 @@ def doorGame():
              correctLetters = correctLetters + 1                                                          #then moves to the next even index using times x2. This keeps the blank spaces... 
          printNow(wordDashes)
        
-       #if the guessed letter is not correct...
+       #Wrong Answer Logic
        else:
            wrongAnswers = wrongAnswers + 1
-           printNow("That does not appear to be correct, you think to yourself!")
-           printNow("Try a diffrent letter: ")  
-           printNow(wordDashes) 
-
-         # Check if player has guessed too many times and lost
+           printNow("'HAHAHAHAHA! That's wrong!'")
+           printNow ("'The question is... Tear one off and scratch my head what was red is black instead! WHAT AM I!'")
+           printNow(wordDashes)   
                       
-       
+     #Winning statement: 
      if correctLetters== len(hiddenWord):
+       printNow("Suddenly the spirit screams! \n 'AHHHHHH!' \n Then disappears, leaving the room like it once was before.")
        printNow("The correct answer was:  " + hiddenWord)
        printNow("You place a burning match in the skulls mouth, and")
        printNow("The catacomb wall begins to shake...")
        printNow("You have opened a door....")
        doorOpened = true
-       return doorOpened
-     # Ask the player if they want to play again (but only if the game is done).
      
 
 welcome()
