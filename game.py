@@ -330,7 +330,7 @@ def goDirection(player, roomName, validChoices, playerChoice):
       
   # room3 choices here
   elif roomName == 'room3':
-    if doorOpened == false: 
+    if "doorOpen" not in self.trackHistory: 
       if playerChoice.lower() == "south":
         doorGame()
       if playerChoice.lower() == "north":
@@ -547,7 +547,8 @@ def doorGame():
        printNow("You place a burning match in the skulls mouth, and")
        printNow("The catacomb wall begins to shake...")
        printNow("You have opened a door....")
-       doorOpened = true
+       self.trackHistory.append(doorOpen)
+       
      
 
 welcome()
