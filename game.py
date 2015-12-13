@@ -549,8 +549,14 @@ def doorGame():
        printNow("You have opened a door....")
        self.trackHistory.append(doorOpen)
        
-     
-
+#***************************Sound***Logic*************************************************     
+def creakingDoor():
+   file = "" 
+   sound = makeSound(file)
+   for sample in getSamples(sound):
+      value  = getSampleValue(sample)
+      setSampleValue(sample, value * 6 )
+   play(sound)
 welcome()
 room1()
   
