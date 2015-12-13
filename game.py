@@ -28,7 +28,36 @@ def entry(player=None):
     goDirection(player, room3, validChoices, direction)
   elif doorOpened == true:
     goDirection(player, 'entry', validChoices, direction)
-
+    
+def tunnel1(player):
+  #function for tunnel1
+  printNow("You are a dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
+  validChoices = ['north', 'east', 'south','west']   # player enters the main corridor  they can go north, east, south, west
+  #If door isnt opened
+  if doorOpened == false:
+    printNow("There is a door on the left,choose your direction") 
+      goDirection(player, room3, validChoices, direction)
+  #If user Chooses to go into the first room or further navigate tunnel
+  elif doorOpened == true:
+  goDirection(player, tunnel1, validChoices, direction)
+  else:
+    printNow("Choose a direction")
+    
+def tunnel1_2(player):
+  #function for tunnel1_2
+  printNow("You further along in the dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
+  printNow("you have a door on your right, and a dark tunnel ahead, which way wouldyou like to go?")
+  validChoices = ['north','east', 'south']   # player is in the main corridor  they can go north, east, or south
+  #If door isnt opened
+  if doorOpened == false:
+    printNow(" Choose your direction") 
+      goDirection(player, room3, validChoices, direction)
+  #If user Chooses to go into the first room or further navigate tunnel
+  elif doorOpened == true:
+  goDirection(player, tunnel1_2, validChoices, direction)
+  else:
+    printNow("Choose your direction" 
+    
 def room1(player=None):
 
   #first room in the game needs this
@@ -193,7 +222,7 @@ def goDirection(player, roomName, validChoices, playerChoice):
   if playerChoice.lower() == "exit":  
     sys.exit("Goodbye. Thank you for playing.")
       
-  # room1 choices here 
+  # Entry choices here 
    elif roomName == 'entry':
     if doorOpened == false: 
       if playerChoice.lower() == "north":
@@ -208,7 +237,40 @@ def goDirection(player, roomName, validChoices, playerChoice):
     else:
       if playerChoice.lower() == "west":
         tunnel1(player)
-  
+        
+#tunnel1 choices
+  elif roomName == 'tunnel1':
+    if doorOpened == false: 
+      if playerChoice.lower() == "south":
+         playerChoice = requestString("Do you want to restart the game: Select Yes ('Y') or No('N')")
+         if (playerChoice.lower()== "yes") or (playerChoice.lower() == "y")
+           entry()
+          elif (playerChoice.lower()== "no") or (playerChoice.lower() == "n")
+          tunnel1()
+     else:
+      if playerChoice.lower() == "west":
+        room1(player)
+      if playerChoice.lower() == "north":
+        playerChoice = requestString("Which way do you want to go?")
+        if playerChoice.lower() == "north":
+          tunne11_2(player)
+        else:
+        printNow("you can only go north")   
+# tunnel1_2 choices
+  elif roomName == 'tunnel1_2':
+    if doorOpened == false: 
+      if playerChoice.lower() == "south":
+        tunnel1(player)
+         
+      else:
+      
+      if playerChoice.lower() == "east":
+        room2(player)
+      if playerChoice.lower() == "north":
+         tunne11_3(player)
+        else:
+         printNow("you can only go north") 
+#Room 1 Choices here  
   if roomName == 'room1':
     if playerChoice.lower() == "south":
       room2(player)
