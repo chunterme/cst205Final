@@ -6,7 +6,7 @@ import sys
 doorOpened = false  #Global variable for gmae. Not sure if you guy want to change this logic. Ok with whatever u decide!:)
 
 def welcome():
-  
+  Hell_Intro()
   printNow("Welcome to:")
   printNow("*** Stuck in the Catacombs ***")
   printNow("When presented with choices you can always use the following commands:")
@@ -633,3 +633,54 @@ def zombie_L3():
      value = getSampleValue(sample)
      setSampleValue(sample , value * 10)
   play(sound)   
+def Heart_Beatsound_reg(): #heart beat sound
+  file = "cst205Final/sounds/heartbeat.wav"
+  sound = makeSound(file) 
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample, value * 20)
+  play(sound)
+def intro():
+   file = "cst205Final/sounds/intro.wav" 
+   sound = makeSound(file)
+   for sample in getSamples(sound):
+      value  = getSampleValue(sample)
+      setSampleValue(sample, value * 6 )
+   play(sound)  
+
+ def Hell_Intro():
+  file = "cst205Final/sounds/hellIntro.wav"
+  sound = makeSound(file) 
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample, value )
+  play(sound)
+def Mummy_Norm():
+  file = "C:\Users\luntsfoc\Google Drive\CSUMB\CSIT205\Modules\Code\module 7\cst205Final\sounds\Mummy.wav" 
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value  = getSampleValue(sample)
+     setSampleValue(sample, value * 2 )
+  play(sound)
+  
+def Mummy_low():
+  file = "cst205Final/sounds/Mummy.wav" 
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value  = getSampleValue(sample)
+     setSampleValue(sample, value *0.1 )
+  play(sound)
+  
+def Monster():
+  file = "cst205Final/sounds/Monster.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value  = getSampleValue(sample)
+     setSampleValue(sample, value)
+  play(sound)
+  
+  
+  
+  
+  
+
