@@ -33,6 +33,7 @@ def tunnel1(player):
   #function for tunnel1
   creakingDoor()
   Wind2()
+  zombie_quite()
   printNow("You are a dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
   validChoices = ['north', 'east', 'south','west']   # player enters the main corridor  they can go north, east, south, west
   #If door isnt opened
@@ -48,7 +49,7 @@ def tunnel1(player):
 def tunnel1_2(player):
   #function for tunnel1_2
   Wind2()
-  
+  zombie_L1()
   printNow("You further along in the dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
   printNow("you have a door on your right, and a dark tunnel ahead, which way wouldyou like to go?")
   validChoices = ['north','east', 'south']   # player is in the main corridor  they can go north, east, or south
@@ -64,6 +65,7 @@ def tunnel1_2(player):
 def tunnel1_3(player):
   #function for tunnel1_3
   Wind2()
+  zombie_L2()
   printNow("You further along in the dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans of some sort of creature")
   printNow("you have a door on your left, and a dark tunnel ahead, which way would you like to go?")
   validChoices = ['north','west', 'south']   # player is in the main corridor  they can go north, west, or south
@@ -179,6 +181,7 @@ def room2(player):
 def room3(player):
   creakingDoor()
   Wind1()
+  zombie_L2()
   #function for room 3
   validChoices = ['west', 'south', 'north']   #west moves player back to main hall, south brings playyer to puzzle game, which open passageway.  
   
@@ -204,6 +207,7 @@ def room3(player):
 def room4(player):
   creakingDoor()
   Wind2()
+  zombie_L2()
   #function for room 4
   validChoices = ['west', 'north']   #west moves player back to main hall, north brings player to tunnel 2.
   printNow ("\n************************************************************************************")
@@ -591,10 +595,41 @@ def Wind2():
      setSampleValue(sample, value * 8 )
    play(sound)
 def clown(): #Plays Clown at normal sample value
-  file = "\cst205Final\sounds\cackle1PreMod.wav"
+  file = "/cst205Final/sounds/cackle1PreMod.wav"
   sound = makeSound(file)
   for sample in getSamples(sound):
      value = getSampleValue(sample)
      setSampleValue(sample , value)
   play(sound)
   
+def zombie_quite():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value)
+  play(sound)
+  
+def zombie_L1():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value * 5)
+  play(sound) 
+  
+def zombie_L2():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value * 7)
+  play(sound)
+
+def zombie_L3():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value * 10)
+  play(sound)   
