@@ -6,7 +6,7 @@ import sys
 doorOpened = false  #Global variable for gmae. Not sure if you guy want to change this logic. Ok with whatever u decide!:)
 
 def welcome():
-  
+  Hell_Intro()
   printNow("Welcome to:")
   printNow("*** Stuck in the Catacombs ***")
   printNow("When presented with choices you can always use the following commands:")
@@ -31,6 +31,9 @@ def entry(player=None):
     
 def tunnel1(player):
   #function for tunnel1
+  creakingDoor()
+  Wind2()
+  zombie_quite()
   printNow("You are a dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
   validChoices = ['north', 'east', 'south','west']   # player enters the main corridor  they can go north, east, south, west
   #If door isnt opened
@@ -45,6 +48,8 @@ def tunnel1(player):
     
 def tunnel1_2(player):
   #function for tunnel1_2
+  Wind2()
+  zombie_L1()
   printNow("You further along in the dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
   printNow("you have a door on your right, and a dark tunnel ahead, which way wouldyou like to go?")
   validChoices = ['north','east', 'south']   # player is in the main corridor  they can go north, east, or south
@@ -59,7 +64,9 @@ def tunnel1_2(player):
     printNow("Choose your direction" 
 def tunnel1_3(player):
   #function for tunnel1_3
-  printNow("You further along in the dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans ofsome sort of creature")
+  Wind2()
+  zombie_L2()
+  printNow("You further along in the dank tunnel with an ominous wind,with the stench of dead bodies, you hear the sound of howling wind,and groans of some sort of creature")
   printNow("you have a door on your left, and a dark tunnel ahead, which way would you like to go?")
   validChoices = ['north','west', 'south']   # player is in the main corridor  they can go north, west, or south
   #If door isnt opened
@@ -73,7 +80,8 @@ def tunnel1_3(player):
     printNow("Choose your direction" )    
 
 def room1(player=None):
-
+  creakingDoor():
+  Wind1()
   #first room in the game needs this
   if player is None:
     player = Player()
@@ -100,7 +108,8 @@ def room1(player=None):
 
   
 def room2(player):
-
+  creakingDoor():
+  Wind1()
   # setup your valid directional choices for this room
   validChoices = ['north']
   
@@ -170,6 +179,9 @@ def room2(player):
 
 
 def room3(player):
+  creakingDoor()
+  Wind1()
+  zombie_L2()
   #function for room 3
   validChoices = ['west', 'south', 'north']   #west moves player back to main hall, south brings playyer to puzzle game, which open passageway.  
   
@@ -193,6 +205,9 @@ def room3(player):
        
   
 def room4(player):
+  creakingDoor()
+  Wind2()
+  zombie_L2()
   #function for room 4
   validChoices = ['west', 'north']   #west moves player back to main hall, north brings player to tunnel 2.
   printNow ("\n************************************************************************************")
@@ -207,6 +222,7 @@ def room4(player):
   
 def passageWay1(player):
   #function for passage way 1. 
+  Wind2()
   validChoices = ['south', 'north']  #South: room 2; Norht: Back to room 3
   printNow ("\n************************************************************************************")
   printNow ("You have descovered a small opening in the wall. It seems to lead to some sort of")
@@ -240,6 +256,7 @@ def goDirection(player, roomName, validChoices, playerChoice):
    elif roomName == 'entry':
     if doorOpened == false: 
       if playerChoice.lower() == "north":
+        clown()
         showInformation("Hey Bud I'm looking for a Halloween Party, Do you know where 317 Spooner St is? But hey why you can't go this way!"
         entry(player=None)
       if playerChoice.lower() == "south":
@@ -549,8 +566,121 @@ def doorGame():
        printNow("You have opened a door....")
        self.trackHistory.append(doorOpen)
        
-     
+#***************************Sound***Logic*************************************************     
 
+
+
+def creakingDoor():
+   file = "cst205Final/sounds/Creaking Door.wav" 
+   sound = makeSound(file)
+   for sample in getSamples(sound):
+      value  = getSampleValue(sample)
+      setSampleValue(sample, value * 6 )
+   play(sound)
 welcome()
 room1()
+
+def Wind1():
+   file = "cst205Final/sounds/wind.wav" 
+   sound = makeSound(file)
+   for sample in getSamples(sound):
+      value  = getSampleValue(sample)
+      setSampleValue(sample, value * 8 )
+   play(sound)
+def Wind2():
+   file = "cst205Final/sounds/wind2.wav" 
+   sound = makeSound(file)
+   for sample in getSamples(sound):
+     value  = getSampleValue(sample)
+     setSampleValue(sample, value * 8 )
+   play(sound)
+def clown(): #Plays Clown at normal sample value
+  file = "/cst205Final/sounds/cackle1PreMod.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value)
+  play(sound)
   
+def zombie_quite():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value)
+  play(sound)
+  
+def zombie_L1():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value * 5)
+  play(sound) 
+  
+def zombie_L2():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value * 7)
+  play(sound)
+
+def zombie_L3():
+  file = "cst205Final/sounds/I Want Brains.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample , value * 10)
+  play(sound)   
+def Heart_Beatsound_reg(): #heart beat sound
+  file = "cst205Final/sounds/heartbeat.wav"
+  sound = makeSound(file) 
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample, value * 20)
+  play(sound)
+def intro():
+   file = "cst205Final/sounds/intro.wav" 
+   sound = makeSound(file)
+   for sample in getSamples(sound):
+      value  = getSampleValue(sample)
+      setSampleValue(sample, value * 6 )
+   play(sound)  
+
+ def Hell_Intro():
+  file = "cst205Final/sounds/hellIntro.wav"
+  sound = makeSound(file) 
+  for sample in getSamples(sound):
+     value = getSampleValue(sample)
+     setSampleValue(sample, value )
+  play(sound)
+def Mummy_Norm():
+  file = "C:\Users\luntsfoc\Google Drive\CSUMB\CSIT205\Modules\Code\module 7\cst205Final\sounds\Mummy.wav" 
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value  = getSampleValue(sample)
+     setSampleValue(sample, value * 2 )
+  play(sound)
+  
+def Mummy_low():
+  file = "cst205Final/sounds/Mummy.wav" 
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value  = getSampleValue(sample)
+     setSampleValue(sample, value *0.1 )
+  play(sound)
+  
+def Monster():
+  file = "cst205Final/sounds/Monster.wav"
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+     value  = getSampleValue(sample)
+     setSampleValue(sample, value)
+  play(sound)
+  
+  
+  
+  
+  
+
